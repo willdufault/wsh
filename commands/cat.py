@@ -1,12 +1,12 @@
-from utils.path_utils import make_path_absolute
+from utils.path_utils import get_abs_path
 
 
 def cat(cwd: str, args: list[str]) -> None:
     for path in args:
         path = path.replace("/", "\\")
-        path = make_path_absolute(cwd, path)
+        abs_path = get_abs_path(cwd, path)
         try:
-            with open(path) as file:
+            with open(abs_path) as file:
                 print(file.read())
         except OSError:
             print(f"cat: {path} is not a recognized filepath")

@@ -1,6 +1,6 @@
-import os
+from pathlib import Path
 
-from utils.path_utils import make_path_absolute
+from utils.path_utils import contains_illegal_chars, get_abs_path
 
 
 def touch(cwd: str, args: list[str]) -> None:
@@ -10,10 +10,18 @@ def touch(cwd: str, args: list[str]) -> None:
 
     for path in args:
         path = path.replace("/", "\\")
-        path = make_path_absolute(cwd, path)
+        if contains_illegal_chars(path):
+            print(f"touch: {path} contains illegal characters")
+            continue
+
         if path.endswith("\\"):
             print(f"touch: {path} can't be a directory")
             continue
 
-        with open(path, "w") as _:
+        abs_path = get_abs_path(cwd, path)
+        if Path(abs_path).exists():
+            print(f"touch: {path} already exists")
+            continue
+
+        with open(abs_path, "w") as _:
             pass

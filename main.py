@@ -6,8 +6,22 @@ from commands.cat import cat
 from commands.cd import cd
 from commands.echo import echo
 from commands.ls import ls
-from commands.touch import touch
 from commands.mkdir import mkdir
+from commands.touch import touch
+
+
+def print_banner() -> None:
+    banner = r"""[blue]
+                         /$$      
+                        | $$      
+ /$$  /$$  /$$  /$$$$$$$| $$$$$$$ 
+| $$ | $$ | $$ /$$_____/| $$__  $$
+| $$ | $$ | $$|  $$$$$$ | $$  \ $$
+| $$ | $$ | $$ \____  $$| $$  | $$
+|  $$$$$/$$$$/ /$$$$$$$/| $$  | $$
+ \_____/\___/ |_______/ |__/  |__/
+ """
+    rich.print(banner)
 
 
 def prompt_command(cwd: str) -> list[str]:
@@ -18,6 +32,7 @@ def prompt_command(cwd: str) -> list[str]:
 
 
 def main() -> None:
+    print_banner()
     cwd = os.getcwd()
     while True:
         words = prompt_command(cwd)

@@ -6,3 +6,7 @@
 - tab completion
 - live red dollar sign if illegal command
 - support ~
+- exhaustive error handling
+- test cases
+- handle external commands, crawl path
+- make gui, exe
