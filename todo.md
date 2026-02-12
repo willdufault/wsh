@@ -3,3 +3,6 @@
 - sub env vars
 - support quotes, newline to continue if open quote
 - cat: error edge cases (encoding, illegal chars, etc.)
+- tab completion
+- live red dollar sign if illegal command
+- support ~
