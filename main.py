@@ -5,6 +5,7 @@ import rich
 from commands.cat import cat
 from commands.cd import cd
 from commands.echo import echo
+from commands.history import history
 from commands.ls import ls
 from commands.mkdir import mkdir
 from commands.touch import touch
@@ -34,12 +35,14 @@ def prompt_command(cwd: str) -> list[str]:
 def main() -> None:
     print_banner()
     cwd = os.getcwd()
+    command_history = []
 
     while True:
         words = prompt_command(cwd)
         if len(words) == 0:
             continue
 
+        command_history.append(" ".join(words))
         command = words[0]
         args = words[1:]
 
@@ -62,6 +65,9 @@ def main() -> None:
                 touch(cwd, args)
             case "mkdir":
                 mkdir(cwd, args)
+            case "history":
+                # Don't include history command
+                history(command_history[:-1])
             case "rm":
                 print("TODO")
             case "rmdir":
