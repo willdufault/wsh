@@ -27,7 +27,8 @@ def cd(cwd: str, args: list[str]) -> str:
 
     new_path = Path("\\".join(path_parts))
     if not new_path.is_dir():
-        print(f"cd: {new_path} is not a recognized directory")
+        arg_path = args[0].replace('/', '\\')
+        print(f"cd: {arg_path} is not a recognized directory")
         return cwd
 
     new_cwd = str(new_path)
